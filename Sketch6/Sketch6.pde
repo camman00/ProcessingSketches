@@ -21,10 +21,10 @@ void draw() {
   ellipse(ballx,bally,50,50);
   ballx += speedmult;
   bally += speedmulty;
-  if (ballx > 1000) {
+  if (ballx > 999) {
     speedmult = -speedmult; 
   }
-  else if (ballx < 0) {
+  else if (ballx < -1) {
     speedmult = speedmult * -1;
   }
   if (bally > 1000) {
@@ -36,18 +36,26 @@ void draw() {
   }
   if (ballx < 0 || ballx > 1000 || bally < 0 || bally > 1000) {
     sound.trigger();
+    speedmult += 1;
+    speedmulty += 1;
   }
   fill(255,255,255);
   stroke(20,20,20);
   if (intersects(ballx,bally,mouseX,900,500)) {
     speedmulty = speedmulty * -1;
   }
+  quitgame();
 }
 boolean intersects(int ballX, int ballY, int paddleX, int paddleY, int paddleLength) {
 if (ballY > paddleY && ballX > paddleX && ballX < paddleX + paddleLength)
 return true;
 else 
 return false;
+}
+void quitgame() {
+  if (bally < 1000) {
+    //System.exit(1);
+  }
 }
 
 
